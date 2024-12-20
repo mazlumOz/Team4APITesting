@@ -1,0 +1,315 @@
+{
+	"info": {
+		"_postman_id": "5564a599-3684-4c67-b7b8-e96a1745331b",
+		"name": "Team4APITesting",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_uid": "39576059-5564a599-3684-4c67-b7b8-e96a1745331b"
+	},
+	"item": [
+		{
+			"name": "(US001)UserLogin",
+			"item": [
+				{
+					"name": "NavigateLogin",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "b1ab287a-b5ac-4f3a-9682-3977447a7f8f",
+								"exec": [
+									"pm.test(\"Status code is 401\", function () {\r",
+									"    pm.response.to.have.status(401);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"id": "73924320-4969-448c-a7f2-7f422b37e363",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"turk\",\r\n    \"password\": \"1234\",\r\n    \"rememberMe\": true\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://test.mersys.io/auth/login",
+							"protocol": "https",
+							"host": [
+								"test",
+								"mersys",
+								"io"
+							],
+							"path": [
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "5c5e2cac-4152-4846-a73d-cf92ee7a5d8e",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"id": "4a2c7a23-e4d2-4f08-babb-4c00395e2ae2",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"turkeyts\",\r\n    \"password\": \"TechnoStudy123\",\r\n    \"rememberMe\": \"true\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://test.mersys.io/auth/login",
+							"protocol": "https",
+							"host": [
+								"test",
+								"mersys",
+								"io"
+							],
+							"path": [
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"id": "67c2bceb-69d0-461f-96fa-4ed722aa6fbb"
+		},
+		{
+			"name": "(US101)StatesCRUD",
+			"item": [
+				{
+					"name": "StatesListGet",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "ecbaacdc-49b6-4674-87c5-a75e2ba35da7",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"id": "84ea550d-7845-4280-bced-c3c546b6bc91",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://test.mersys.io/school-service/api/states",
+							"protocol": "https",
+							"host": [
+								"test",
+								"mersys",
+								"io"
+							],
+							"path": [
+								"school-service",
+								"api",
+								"states"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "StatesPost",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "a7a47e1d-5478-4987-a915-62cefa255d3d",
+								"exec": [
+									"pm.test(\"Status code is 201\", function () {\r",
+									"    pm.response.to.have.status(201);\r",
+									"});\r",
+									"\r",
+									"pm.collectionVariables.set(\"nameId\", pm.response.json().id);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"id": "4933c93e-4722-4f72-bde7-dc041227ace8",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": null,\r\n    \"name\": \"{{$randomUserName}}\",\r\n    \"shortName\": \"{{$randomLastName}}\",\r\n    \"country\": {\r\n        \"id\": \"63919f4e6d489849480e9c6c\"\r\n    },\r\n    \"translateName\": []\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://test.mersys.io/school-service/api/states",
+							"protocol": "https",
+							"host": [
+								"test",
+								"mersys",
+								"io"
+							],
+							"path": [
+								"school-service",
+								"api",
+								"states"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "StatesPut",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "100db59b-1bc5-466d-9f5e-4c516ab1e6af",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"id": "324934b2-6708-4c01-bcb9-3cfc88e94657",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": \"{{nameId}}\",\r\n    \"country\": {\r\n        \"id\": \"63919f4e6d489849480e9c6c\",\r\n        \"hasState\": false\r\n    },\r\n    \"name\": \"{{$randomUserName}}\",\r\n    \"translateName\": [],\r\n    \"shortName\": \"{{$randomLastName}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://test.mersys.io/school-service/api/states",
+							"protocol": "https",
+							"host": [
+								"test",
+								"mersys",
+								"io"
+							],
+							"path": [
+								"school-service",
+								"api",
+								"states"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "edb0f58d-b9b5-4cf6-8922-e105e4ead20e",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"id": "fb647bf0-f5c2-4cd0-8b6d-162e529aa7bd",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "https://test.mersys.io/school-service/api/states/{{nameId}}",
+							"protocol": "https",
+							"host": [
+								"test",
+								"mersys",
+								"io"
+							],
+							"path": [
+								"school-service",
+								"api",
+								"states",
+								"{{nameId}}"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"id": "7fc5f0c9-38c0-4b07-9747-17de426e5559"
+		}
+	],
+	"variable": [
+		{
+			"id": "5060e74f-4702-4dae-bb60-57a0f06005a7",
+			"key": "nameId",
+			"value": ""
+		}
+	]
+}
